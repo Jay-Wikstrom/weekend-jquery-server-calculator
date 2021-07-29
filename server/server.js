@@ -5,15 +5,27 @@ const bodyParser = require('body-parser');
 const port = 5000;
 
 const app = express();
-
-
-
+const data = [];
 
 
 app.use(express.static('./server/public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/data', function (req, res) {
+    console.log('Ready to send');
+    res.send(data);
+});
+
+app.post('/data', function(req, res){
+    console.log('req.body', req.body);
+    let newData = req.body;
+
+    
+
+    res.sendStatus(200);
+});
 
 
 
