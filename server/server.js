@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/data', function (req, res) {
     console.log('Ready to send');
+    
+    //
     res.send(data);
 });
 
 app.post('/data', function(req, res){
     console.log('req.body', req.body);
-    let newData = req.body;
-
-    
+    data.push(req.body);
 
     res.sendStatus(200);
 });
