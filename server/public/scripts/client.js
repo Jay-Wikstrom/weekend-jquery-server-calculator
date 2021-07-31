@@ -51,12 +51,59 @@ function equal() {
         data: calculation
     }).then((response) => {
         console.log('POST /calculation', response);
+        getCalculation();
+
+        let result;
+        if (calculation.operator === '+') {
+            result = calculation.inputOne + calculation.inputTwo
+            $('#results').append(`${result}`)
+            $('#listOfResults').append(`
+            <li>
+                ${calculation.inputOne} + 
+                ${calculation.inputTwo} =
+                ${result}
+            </li>
+        `)
+        } else if (calculation.operator === '-') {
+            result = calculation.inputOne - calculation.inputTwo
+            $('#results').append(`${result}`)
+            $('#listOfResults').append(`
+            <li>
+                ${calculation.inputOne} - 
+                ${calculation.inputTwo} =
+                ${result}
+            </li>
+        `)
+        } else if (calculation.operator === '*') {
+            result = calculation.inputOne * calculation.inputTwo
+            $('#results').append(`${result}`)
+            $('#listOfResults').append(`
+            <li>
+                ${calculation.inputOne} * 
+                ${calculation.inputTwo} =
+                ${result}
+            </li>
+        `)
+        } else if (calculation.operator === '/') {
+            result = calculation.inputOne / calculation.inputTwo
+            $('#results').append(`${result}`)
+            $('#listOfResults').append(`
+            <li>
+                ${calculation.inputOne} / 
+                ${calculation.inputTwo} =
+                ${result}
+            </li>
+        `)
+        } else {
+            console.log('Error');
+        }
+
     });
 }
 
 function getCalculation(){
     console.log('about to make a request');
-
+    
     $.ajax({
         method: 'GET',
         url: 'data'

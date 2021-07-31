@@ -7,6 +7,26 @@ const port = 5000;
 const app = express();
 const data = [];
 
+let result;
+    function calculator(array) {
+        for (let index of array) {
+            if (index.operator === '+') {
+                result = index.inputOne + index.inputTwo;
+                console.log(result);
+            } else if (index.operator === '-') {
+                result = index.inputOne - index.inputTwo;
+                console.log(result);
+            } else if (index.operator === '/') {
+                result = index.inputOne / index.inputTwo;
+                console.log(result);
+            } else if (index.operator === '*') {
+                result = index.inputOne * index.inputTwo;
+                console.log(result);
+            } else {
+                console.log('error');
+            } 
+        } //end for loop
+    } //end function
 
 app.use(express.static('./server/public'));
 
@@ -16,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/data', function (req, res) {
     console.log('Ready to send');
     
-    //
+    calculator(data);
     res.send(data);
 });
 
