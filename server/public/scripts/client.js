@@ -1,6 +1,7 @@
 $(document).ready(onReady);
 
-function onReady(){
+function onReady() {
+    getCalculation();
     $(document).on('click', '#addition', add)
     $(document).on('click', '#subtraction', subtract)
     $(document).on('click', '#multiplication', multiply)
@@ -41,19 +42,31 @@ function equal() {
         inputOne: $('#firstNumberInput').val(),
         inputTwo: $('#secondNumberInput').val()
     }
-    $('#results').empty();
-    console.log(calculation);
-    console.log(calculation.operator);
 
     $.ajax({
         method: 'POST',
         url: '/data',
         data: calculation
-    }).then((response) => {
+    }).then(function (response) {
         console.log('POST /calculation', response);
         getCalculation();
+    });
+}
+
+function getCalculation() {
+    console.log('about to make a request');
+
+    $.ajax({
+        method: 'GET',
+        url: 'data'
+    }).then(function(response) {
+        console.log('GET /data response');
 
         let result;
+        $('#results').empty()
+        $('#listOfResults').empty();
+        for (let calculation of response){
+            $('#results').empty();
         if (calculation.operator === '+') {
             result = Number(calculation.inputOne) + Number(calculation.inputTwo)
             $('#results').append(`${result}`)
@@ -97,18 +110,7 @@ function equal() {
         } else {
             console.log('Error');
         }
-
-    });
-}
-
-function getCalculation(){
-    console.log('about to make a request');
-    
-    $.ajax({
-        method: 'GET',
-        url: 'data'
-    }).then((response) => {
-        console.log('GET /data response');
+    }
     })
 }
 
