@@ -2,34 +2,39 @@ $(document).ready(onReady);
 
 function onReady() {
     getCalculation();
-    $(document).on('click', '#addition', add)
-    $(document).on('click', '#subtraction', subtract)
-    $(document).on('click', '#multiplication', multiply)
-    $(document).on('click', '#division', divide)
-    $(document).on('click', '#equals', equal)
-    $(document).on('click', '#clear', clear)
+    $(document).on('click', '#addition', add);
+    $(document).on('click', '#subtraction', subtract);
+    $(document).on('click', '#multiplication', multiply);
+    $(document).on('click', '#division', divide);
+    $(document).on('click', '#equals', equal);
+    $(document).on('click', '#clear', clear);
 };
 
+//Operator for add button
 function add() {
     operator = '+';
     console.log(operator);
 };
 
+//Operator for subtract button
 function subtract() {
     operator = '-';
     console.log(operator);
 }
 
+//Operator for multiply button
 function multiply() {
     operator = '*';
     console.log(operator);
 }
 
+//Operator for divide button
 function divide() {
     operator = '/';
     console.log(operator);
 }
 
+//Clear inputs
 function clear() {
     console.log('Clear test');
     $('#firstNumberInput').val('');
@@ -43,6 +48,7 @@ function equal() {
         inputTwo: $('#secondNumberInput').val()
     }
 
+    //Post data to /data
     $.ajax({
         method: 'POST',
         url: '/data',
@@ -51,11 +57,12 @@ function equal() {
         console.log('POST /calculation', response);
         getCalculation();
     });
-}
+} //end equal function 
 
 function getCalculation() {
     console.log('about to make a request');
 
+    //Make HTTP request to server to GET /data endpoint
     $.ajax({
         method: 'GET',
         url: 'data'
@@ -67,6 +74,7 @@ function getCalculation() {
         $('#listOfResults').empty();
         for (let calculation of response){
             $('#results').empty();
+
         if (calculation.operator === '+') {
             result = Number(calculation.inputOne) + Number(calculation.inputTwo)
             $('#results').append(`${result}`)
@@ -110,7 +118,7 @@ function getCalculation() {
         } else {
             console.log('Error');
         }
-    }
-    })
-}
+    } //end for loop
+    }); //end of then
+} //end function
 
