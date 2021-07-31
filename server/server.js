@@ -11,16 +11,16 @@ let result;
     function calculator(array) {
         for (let index of array) {
             if (index.operator === '+') {
-                result = index.inputOne + index.inputTwo;
+                result = Number(index.inputOne) + Number(index.inputTwo);
                 console.log(result);
             } else if (index.operator === '-') {
-                result = index.inputOne - index.inputTwo;
+                result = Number(index.inputOne) - Number(index.inputTwo);
                 console.log(result);
             } else if (index.operator === '/') {
-                result = index.inputOne / index.inputTwo;
+                result = Number(index.inputOne) / Number(index.inputTwo);
                 console.log(result);
             } else if (index.operator === '*') {
-                result = index.inputOne * index.inputTwo;
+                result = Number(index.inputOne) * Number(index.inputTwo);
                 console.log(result);
             } else {
                 console.log('error');

@@ -55,7 +55,7 @@ function equal() {
 
         let result;
         if (calculation.operator === '+') {
-            result = calculation.inputOne + calculation.inputTwo
+            result = Number(calculation.inputOne) + Number(calculation.inputTwo)
             $('#results').append(`${result}`)
             $('#listOfResults').append(`
             <li>
@@ -65,7 +65,7 @@ function equal() {
             </li>
         `)
         } else if (calculation.operator === '-') {
-            result = calculation.inputOne - calculation.inputTwo
+            result = Number(calculation.inputOne) - Number(calculation.inputTwo)
             $('#results').append(`${result}`)
             $('#listOfResults').append(`
             <li>
@@ -75,7 +75,7 @@ function equal() {
             </li>
         `)
         } else if (calculation.operator === '*') {
-            result = calculation.inputOne * calculation.inputTwo
+            result = Number(calculation.inputOne) * Number(calculation.inputTwo)
             $('#results').append(`${result}`)
             $('#listOfResults').append(`
             <li>
@@ -85,7 +85,7 @@ function equal() {
             </li>
         `)
         } else if (calculation.operator === '/') {
-            result = calculation.inputOne / calculation.inputTwo
+            result = Number(calculation.inputOne) / Number(calculation.inputTwo)
             $('#results').append(`${result}`)
             $('#listOfResults').append(`
             <li>
