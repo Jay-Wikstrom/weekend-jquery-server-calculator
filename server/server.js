@@ -26,8 +26,6 @@ function calculator(array) {
             console.log('error');
         }
     } //end for loop
-
-    //return result;
 } //end function
 
 
