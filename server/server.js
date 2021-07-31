@@ -8,27 +8,28 @@ const port = 5000;
 const app = express();
 const data = [];
 
+function calculator(array) {
+    for (let index of array) {
+        if (index.operator === '+') {
+            result = Number(index.inputOne) + Number(index.inputTwo);
+            console.log(result);
+        } else if (index.operator === '-') {
+            result = Number(index.inputOne) - Number(index.inputTwo);
+            console.log(result);
+        } else if (index.operator === '/') {
+            result = Number(index.inputOne) / Number(index.inputTwo);
+            console.log(result);
+        } else if (index.operator === '*') {
+            result = Number(index.inputOne) * Number(index.inputTwo);
+            console.log(result);
+        } else {
+            console.log('error');
+        }
+    } //end for loop
 
-let result;
-    function calculator(array) {
-        for (let index of array) {
-            if (index.operator === '+') {
-                result = Number(index.inputOne) + Number(index.inputTwo);
-                console.log(result);
-            } else if (index.operator === '-') {
-                result = Number(index.inputOne) - Number(index.inputTwo);
-                console.log(result);
-            } else if (index.operator === '/') {
-                result = Number(index.inputOne) / Number(index.inputTwo);
-                console.log(result);
-            } else if (index.operator === '*') {
-                result = Number(index.inputOne) * Number(index.inputTwo);
-                console.log(result);
-            } else {
-                console.log('error');
-            } 
-        } //end for loop
-    } //end function
+    //return result;
+} //end function
+
 
 app.use(express.static('./server/public'));
 app.use(bodyParser.json());
