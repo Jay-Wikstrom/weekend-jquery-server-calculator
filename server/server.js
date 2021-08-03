@@ -27,22 +27,23 @@ app.get('/data', function (req, res) {
 //POST data
 app.post('/data', function(req, res){
     console.log('req.body', req.body);
+
     let result;
     let operator = req.body.operator;
     let inputOne = Number(req.body.inputOne);
     let inputTwo = Number(req.body.inputTwo);
-    
+
     if (operator === '+') {
         result = inputOne + inputTwo;
         console.log(result);
     } else if (operator === '-') {
-        result = Number(inputOne) - Number(inputTwo);
+        result = inputOne - inputTwo;
         console.log(result);
     } else if (operator === '/') {
-        result = Number(inputOne) / Number(inputTwo);
+        result = inputOne / inputTwo;
         console.log(result);
     } else if (operator === '*') {
-        result = Number(inputOne) * Number(inputTwo);
+        result = inputOne * inputTwo;
         console.log(result);
     } else {
         console.log('error');
@@ -54,7 +55,6 @@ app.post('/data', function(req, res){
         operator: operator,
         result: result
     }
-    
     
     data.push(completedCalc);
     console.log(data);

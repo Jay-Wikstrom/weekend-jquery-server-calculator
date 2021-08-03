@@ -69,7 +69,6 @@ function getCalculation() {
     }).then(function(response) {
         console.log('GET /data response');
 
-        //let result;
         $('#results').empty()
         $('#listOfResults').empty();
         for (let calculation of response){
