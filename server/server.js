@@ -6,30 +6,14 @@ const bodyParser = require('body-parser');
 const port = 5000;
 
 const app = express();
+
+//Data storage
 const data = [];
 
-function calculator(array) {
-    for (let index of array) {
-        if (index.operator === '+') {
-            result = Number(index.inputOne) + Number(index.inputTwo);
-            console.log(result);
-        } else if (index.operator === '-') {
-            result = Number(index.inputOne) - Number(index.inputTwo);
-            console.log(result);
-        } else if (index.operator === '/') {
-            result = Number(index.inputOne) / Number(index.inputTwo);
-            console.log(result);
-        } else if (index.operator === '*') {
-            result = Number(index.inputOne) * Number(index.inputTwo);
-            console.log(result);
-        } else {
-            console.log('error');
-        }
-    } //end for loop
-} //end function
-
-
+//Static Files
 app.use(express.static('./server/public'));
+
+//Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -37,18 +21,46 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/data', function (req, res) {
     console.log('Ready to send');
     
-    calculator(data);
     res.send(data);
 });
 
 //POST data
 app.post('/data', function(req, res){
     console.log('req.body', req.body);
-    data.push(req.body);
+    let result;
+    let operator = req.body.operator;
+    let inputOne = Number(req.body.inputOne);
+    let inputTwo = Number(req.body.inputTwo);
+    
+    if (operator === '+') {
+        result = inputOne + inputTwo;
+        console.log(result);
+    } else if (operator === '-') {
+        result = Number(inputOne) - Number(inputTwo);
+        console.log(result);
+    } else if (operator === '/') {
+        result = Number(inputOne) / Number(inputTwo);
+        console.log(result);
+    } else if (operator === '*') {
+        result = Number(inputOne) * Number(inputTwo);
+        console.log(result);
+    } else {
+        console.log('error');
+    }
 
-    res.sendStatus(200);
+    const completedCalc = {
+        inputOne: inputOne,
+        inputTwo: inputTwo,
+        operator: operator,
+        result: result
+    }
+    
+    
+    data.push(completedCalc);
+    console.log(data);
+
+    res.sendStatus(201);
 });
-
 
 //Listen for requests
 app.listen(port, function(){

@@ -69,55 +69,20 @@ function getCalculation() {
     }).then(function(response) {
         console.log('GET /data response');
 
-        let result;
+        //let result;
         $('#results').empty()
         $('#listOfResults').empty();
         for (let calculation of response){
             $('#results').empty();
-
-        if (calculation.operator === '+') {
-            result = Number(calculation.inputOne) + Number(calculation.inputTwo)
-            $('#results').append(`${result}`)
+            $('#results').append(`${calculation.result}`)
             $('#listOfResults').append(`
-            <li>
-                ${calculation.inputOne} + 
-                ${calculation.inputTwo} =
-                ${result}
-            </li>
-        `)
-        } else if (calculation.operator === '-') {
-            result = Number(calculation.inputOne) - Number(calculation.inputTwo)
-            $('#results').append(`${result}`)
-            $('#listOfResults').append(`
-            <li>
-                ${calculation.inputOne} - 
-                ${calculation.inputTwo} =
-                ${result}
-            </li>
-        `)
-        } else if (calculation.operator === '*') {
-            result = Number(calculation.inputOne) * Number(calculation.inputTwo)
-            $('#results').append(`${result}`)
-            $('#listOfResults').append(`
-            <li>
-                ${calculation.inputOne} * 
-                ${calculation.inputTwo} =
-                ${result}
-            </li>
-        `)
-        } else if (calculation.operator === '/') {
-            result = Number(calculation.inputOne) / Number(calculation.inputTwo)
-            $('#results').append(`${result}`)
-            $('#listOfResults').append(`
-            <li>
-                ${calculation.inputOne} / 
-                ${calculation.inputTwo} =
-                ${result}
-            </li>
-        `)
-        } else {
-            console.log('Error');
-        }
+        <li>
+            ${calculation.inputOne} 
+            ${calculation.operator} 
+            ${calculation.inputTwo} =
+            ${calculation.result}
+        </li>
+    `)
     } //end for loop
     }); //end of then
 } //end function
